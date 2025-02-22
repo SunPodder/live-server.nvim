@@ -1,3 +1,4 @@
+local server = require("server")
 local M = {}
 
 function M.setup()
@@ -12,23 +13,19 @@ function M.setup()
 	})
 end
 
+-- Editor Command handler
+-- @param opts table
+-- @return nil
 function M.cmd(opts)
 	local cmd = opts.args
 	if cmd == 'start' then
-		StartServer()
+		server.start()
 	elseif cmd == 'stop' then
-		StopServer()
+		server.stop()
 	else
 		print('Invalid command')
 	end
 end
 
-function StartServer()
-	print('Starting server...')
-end
-
-function StopServer()
-	print('Stopping server...')
-end
-
 return M
+
