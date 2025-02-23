@@ -1,7 +1,15 @@
-local server = require("server")
+local Server = require("live_server.server")
+local Config = require("live_server.config")
 local M = {}
 
-function M.setup()
+-- Setup the plugin
+-- @param opts table
+-- @return nil
+function M.setup(opts)
+	if opts ~= nil then
+		Config.merge(opts)
+	end
+
 	-- Accept one subcommand
 	-- command to start the server
 	-- command to stop the server
@@ -19,9 +27,9 @@ end
 function M.cmd(opts)
 	local cmd = opts.args
 	if cmd == 'start' then
-		server.start()
+		Server.start()
 	elseif cmd == 'stop' then
-		server.stop()
+		Server.stop()
 	else
 		print('Invalid command')
 	end
